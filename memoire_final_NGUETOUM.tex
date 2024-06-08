@@ -1,0 +1,76 @@
+\documentclass[a4paper,12pt, oneside]{book}
+\usepackage{newtxtext, newtxmath}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=2cm]{geometry}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{xcolor, color, colortbl}
+\usepackage{booktabs, longtable, multirow, cellspace, makecell}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{hyperref}
+\usepackage{textcase}
+\usepackage{lscape}
+\usepackage[margin=10pt,font=small,labelfont=bf,
+labelsep=endash]{caption}
+\usepackage{bookmark}
+\bookmarksetup{
+	numbered,
+	open
+}
+\usepackage[nosectionbib]{apacite}
+\usepackage{tocloft}
+\usepackage{chngcntr}
+
+
+\input{settings.tex}
+
+\begin{document}
+\input{titlepage.tex}
+\frontmatter
+% Renommer le titre de la partie bibliographie
+\renewcommand{\bibname}{Références}
+\renewcommand{\contentsname}{Sommaire}
+\input{dedicace.tex}
+\input{remerciements.tex}
+\renewcommand{\listfigurename}{Liste des Figures}
+
+
+\newpage
+\addcontentsline{toc}{chapter}{Sommaire}
+\tableofcontents
+\newpage
+\addcontentsline{toc}{chapter}{Liste des Figures}
+\listoffigures
+\newpage
+\addcontentsline{toc}{chapter}{Liste des Tableaux}
+\listoftables
+\newpage
+
+\input{abreviations.tex}
+
+\input{abstracts.tex}
+
+\mainmatter
+
+\input{introduction.tex}
+\input{chapter1.tex}
+\input{chapter2.tex}
+\input{chapter3.tex}
+\input{conclusion.tex}
+
+\bibliographystyle{myapacite}
+\bibliography{library_master.bib}
+
+\appendix
+\renewcommand{\thechapter}{\Alph{chapter}}
+
+\input{appendiceA.tex}
+\input{appendiceB.tex}
+\input{appendiceC.tex}
+\input{appendiceD.tex}
+
+\end{document}

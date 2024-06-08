@@ -1,0 +1,96 @@
+% Insertions des tablenames et figurenames dans les listes de tableaux et les
+% listes de figures
+% Les commandes ci-dessous nécessitent le chargement du package tocloft
+\renewcommand\cftfigpresnum{\bfseries\figurename~}
+\renewcommand\cftfigaftersnum{ :}
+\setlength\cftfignumwidth{5.5em}
+
+\renewcommand\cfttabpresnum{\scshape\bfseries\tablename~}
+\renewcommand\cfttabaftersnum{ :}
+\setlength\cfttabnumwidth{7em}
+
+\renewcommand{\cftchapleader}{\bfseries\dotfill}
+\renewcommand{\cftchappresnum}{CHAPITRE } % CHAPTER before number in ToC
+\renewcommand\cftchapaftersnum{ : }
+\newlength{\mylen} % a scratch length
+\settowidth{\mylen}{\bfseries\cftchappresnum\cftchapaftersnum} % extra space
+\addtolength{\cftchapnumwidth}{\mylen} % add the extra space
+
+% rédefinition de la commande chapter afin qu'il se numerote en chiffres romains
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+% cette commande force le numerotage des sections jusqu'au niveau 3 (subsubsection)
+\setcounter{secnumdepth}{3}
+% remove blank page at the end of every chapter
+\let\cleardoublepage=\clearpage
+% Redefinition de la commande du mode paysage. le package lscape doit être chargé
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+% Here is a solution with some vertical padding in table cells. The cellspace package is done for that: it defines a minimal vertical spacing at the top and the bottom of cells in columns with a specifier prefixed with S. With the makecell package, you can have line breaks in cells, thus allowing for several aimges in a single cell.
+%\renewcommand\cellspacetoplimit{3pt}
+%\renewcommand\cellspacebottomlimit{3pt}
+\newcommand\rowincludegraphics[2][]{\raisebox{-0.45\height}{\includegraphics[#1]{#2}}}
+
+% Modifier l'espace avant et après les titres de niveau chapitre
+\makeatletter
+\def\@makechapterhead#1{%
+	\vspace*{-10\p@}% default: 50pt
+	{\parindent \z@ \raggedright \normalfont
+		\ifnum \c@secnumdepth >\m@ne
+		\huge\bfseries \@chapapp\space \thechapter \space {:}
+		%\par\nobreak
+		%\vskip 20\p@
+		\fi
+		\interlinepenalty\@M
+		\Huge \bfseries #1\par\nobreak
+		\vskip 40\p@
+}}
+\def\@makeschapterhead#1{%
+	\vspace*{-10\p@}% default: 50pt
+	{\parindent \z@ \raggedright
+		\normalfont
+		\interlinepenalty\@M
+		\Huge \bfseries  #1\par\nobreak
+		\vskip 40\p@
+}}
+\makeatother
+
+% supprimer les entêtes et pieds de pages]
+\pagestyle{plain}
+% Definir la profondeur de la table de matieres
+\setcounter{tocdepth}{2}
+% Definir l'interligne correspondant à 1.5 dans word
+\linespread{1.45}
+% Ajuster l'espacement entre les lignes de tableaux
+\renewcommand{\arraystretch}{0.8}
+% Forcer les figures et les tableaux  à être numerotés de façon continue sans le numero du chapitre
+% nécessite le chargement du package chngcntr
+\counterwithout{figure}{chapter} 
+\counterwithout{table}{chapter}
+
+% Obliger les tableau de porter la denomination en français
+\def\frenchtablename{Tableau}
+\renewcommand{\thetable}{\Roman{table}}
+
+% Définir le type de pagination des préambule et corps du document
+\providecommand\frontmatter{\renewcommand\thepage{\scshape\mdseries\roman{page}}}%
+\providecommand\mainmatter{\clearpage\pagenumbering{arabic}}
+
+% Customisations de apacite
+\AtBeginDocument[apacite-localisation]{%
+	% Rendre 'et al.' italique
+	\renewcommand{\BOthers}[1]{\emph{et al.}\hbox{}}%
+	\renewcommand{\BOthersPeriod}[1]{\emph{et al.}\hbox{}}%
+	% Redefinir la commande de production de &
+	\renewcommand{\BBAA}{et}
+	\renewcommand{\BBAB}{et}
+	\renewcommand{\BAnd}{et}
+	\renewcommand{\APACrefauthstyle}{\bfseries} % Rendre la liste des auteurs en gras dans les references
+}
+\DeclareHookRule{begindocument}{apacite-localisation}{after}{apacite}
+
+%% New column, define the width as #1, the m-column will align all
+%% content in ther vertical middle, \centering will align it in the
+%% horizontal middle.
+\newcolumntype{C}[1]{%
+	>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}

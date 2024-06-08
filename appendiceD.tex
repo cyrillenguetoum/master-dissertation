@@ -1,0 +1,117 @@
+%\chapter*{Annexe D: Choix des combinaisons d'espèces à inclure dans les modèles statistiques}
+%\addcontentsline{toc}{chapter}{Annexe D: Choix des combinaisons de parasites à inclure dans les modèles statistiques}
+\chapter{Choix des combinaisons d'espèces à inclure dans les modèles statistiques} \label{annex:statistics-guide}
+
+\renewcommand{\thefigure}{D.\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{D.\Roman{table}}
+\setcounter{table}{0}
+
+\par Selon l’ACP ou PCA (\textit{Principal Component Analysis} ou Analyse de composantes principales) dont les résultats sont présentés par les figures \ref{fig:res.pca.indivis.assoc-1} et \ref{fig:res.pca.indivis.assoc-2}, les espèces \textit{Cooperia} spp., \textit{Ostertagia ostertagi }, \textit{Strongyloides papillosus}, \textit{Haemonchus contortus}, \textit{Nematodirus battus} et \textit{Trichostrongylus axei} sont négativement corrélés à l’hématocrite, si l'on se réfère à leur projection sur la composante principale 1. De même les espèces \textit{Haemonchus contortus}, \textit{Nematodirus battus}, \textit{Trichostrongylus axei} et \textit{Fasciola gigantica} sont négativement corrélés à la NEC si l'on se réfère à leurs projections sur la composante principale numéro 2. 
+
+\begin{figure}[!ht]
+	{
+		\centering 
+		\subfloat[Effets de la présence des espèces parasitaires\label{fig:res.pca.indivis.assoc-1}]
+		{\includegraphics[width=0.5\linewidth,]{images/r_plots/pca_parasites_individuels_2.png} }
+		\subfloat[Effets des OPGs\label{fig:res.pca.indivis.assoc-2}]
+		{\includegraphics[width=0.5\linewidth,]{images/r_plots/pca_parasites_individuels_1.png} }
+	}
+	\caption{Représentation de l'analyse des composantes principales entre les variables de présence des parasites, les variables de décompte des \oe ufs avec les variables hématocrite et NEC}\label{fig:res.pca.indivis.assoc}
+\end{figure}
+
+\par Donc les combinaisons d'espèces dont on a recherché les effets sur les paramètres sanitaires sont constitués à partir de deux groupes:
+\begin{itemize}
+	\item Groupe ayant un effet sur l’hématocrite: \textit{Ostertagia ostertagi}, \textit{Cooperia} spp., \textit{Strongyloides papillosus}, \textit{Trichostrongylus axei}, \textit{Nematodirus battus} et \textit{Haemonchus contortus};
+	\item Groupe ayant un effet sur la NEC: \textit{Fasciola gigantica}, \textit{Nematodirus battus}, \textit{Haemonchus contortus} et \textit{Trichostrongylus axei}.
+\end{itemize}
+
+Les modèles statistiques ont permi d'établir l'association entre les paramètres sanitaires 
+(variables réponses) et les combinaisons de parasites. Les combinaisons de
+d'espèces parasitaires devant faire partie des modèles statistiques ne doivent pas exprimer 
+de la multicollinéarité ou l'exprimer à un faible degré. La multicollinéarité est la 
+corrélation forte qui peut exister entrer des variables explicatives d'un modèle statistique,
+et ce phénomène nuit à la précision du modèle. En effet la variables fortement corrélées 
+entre elles représentent la même information. Il est donc nécessaire de n'inclure dans les 
+modèles qu'une seule variable des couples fortement corrélés \shortcite{RN67}.
+
+
+\begin{figure}[!ht]
+	\includegraphics[width=0.8\linewidth,]{images/r_plots/corr_verification-2}
+	\caption{\label{fig:matrice_corr_nec}Matrice de corrélation entre les variables 
+	explicatives du modèle de regression logistique ordinale de la NEC}
+\end{figure}
+
+\par La colinéarité entre des variables se vérifie par le calcul des 
+coefficients de corrélation (de Pearson) entre elles.
+Les variables explicatives de la NEC sont représentés dans la matrice de corrélation 
+ci-dessous (figure \ref{fig:matrice_corr_nec}). Il ressort de cette figure que les 
+couples de variables: combi\_47 - combi\_50 (r = 0,8), combi\_48 - combi\_51 
+(r = 0,8) et combi\_49 - combi\_52 (r = 0,7) se distinguent par les corrélations 
+fortes entre leurs membres. Il n'est donc pas nécessaire de tous les inclure dans 
+le modèle. On pourrait choisir au sein de chaque couple une seule variable devant 
+faire partie du modèle. Au final nous avons choisi les variables combi\_47, 
+combi\_48 et combi\_52. Combi\_52 a été préféré à combi\_49 parcequ'il réduit 
+davantage l'AIC (\textit{Akiake Information Criterion}) du modèle. 
+
+\begin{figure}[!ht]
+	\includegraphics[width=0.8\linewidth,]{images/r_plots/corr_verification-1}
+	\caption{\label{fig:matrice_corr_hem}Matrice de corrélation entre les variables 
+	explicatives du modèle de regression linéaire de l'hematocrite via les 
+	combinaisons de parasites}
+\end{figure}
+
+Ci-dessus on peut voir une représentation graphique de la matrice de corrélation 
+entre les variables explicatives de l'hématocrite. Les variables combi\_16 à 
+combi\_43 présentent des corrélations fortes avec d'autres variables et les 
+représenter ici aurait rendu le graphe illisible. Nous avons donc choisi de les 
+retirer. Les variables combi\_5 et combi\_12 ont été rétirés du modèle à cause des 
+corrélations fortes qu'elles forment avec d'autres variables.
+
+Les associations spécifiques retenues sont fournies dans le tableau \ref{tab:combi_building_haem} pour les combinaisons pouvant modifier l’hématocrite et le tableau \ref{tab:combi_building_nec} pour combinaisons pouvant modifier la NEC.
+
+\begin{table}[!ht]
+	\caption{\label{tab:combinaisons_parasites}Arrangements de parasites ayant potentiellement un effet sur les paramètres de morbidité et effectivement apparus dans les données}
+	\begin{subtable}[t]{0.48\textwidth}
+		\centering
+		\begin{tabular}[t]{ll}
+			\toprule
+			\textbf{Variables} & \textbf{Combinaisons}\\
+			\midrule
+			combi\_1 & Oo \& C\_spp\\
+			combi\_2 & Oo \& Sp\\
+			combi\_3 & Oo \& Hc\\
+			combi\_4 & Oo \& Nb\\
+			combi\_6 & C\_spp \& Sp\\
+			combi\_7 & C\_spp \& Hc\\
+			combi\_8 & C\_spp \& Nb\\
+			combi\_9 & C\_spp \& Ta\\
+			combi\_10 & Sp \& Hc\\
+			combi\_11 & Sp \& Nb\\
+			combi\_13 & Hc \& Nb\\
+			combi\_14 & Hc \& Ta\\
+			combi\_15 & Nb \& Ta\\			
+			\bottomrule
+		\end{tabular}
+		\caption{\label{tab:combi_building_haem}sur l'hématocrite}
+	\end{subtable}
+	\begin{subtable}[t]{0.48\textwidth}
+		\centering
+		\begin{tabular}[t]{ll}
+			\toprule
+			\textbf{Variables} & \textbf{Combinaisons}\\
+			\midrule
+			combi\_44 & Hc \& Nb \\
+			combi\_45 & Hc \& Fg \\
+			combi\_46 & Hc \& Ta \\
+			combi\_47 & Nb \& Fg \\
+			combi\_48 & Nb \& Ta \\
+			combi\_52 & Hc \& Fg \& Ta \\
+			\bottomrule
+		\end{tabular}
+		\caption{\label{tab:combi_building_nec}sur la NEC}
+	\end{subtable}
+\end{table}
+
+\textbf{\underline{Légende}}: \textbf{Oo}: \textit{Ostertagia ostertagi}; \textbf{Hc}: \textit{Haemonchus contortus};
+\textbf{Nb}: \textit{Nematodirus battus}; \textbf{Sp}: \textit{Strongyloides papillosus}; \textbf{C$\_$spp}: \textit{Cooperia} spp.; \textbf{T$\_$spp}: \textit{Trichuris} spp.; \textbf{Ta}: \textit{Trichostrongylus axei}; \textbf{Fg}: \textit{Fasciola gigantica}; \textbf{Pc}: \textit{Paramphistomum cervi}; \textbf{Mb}: \textit{Moniezia benedeni}.

@@ -1,0 +1,67 @@
+% Protège l'appelation Annexe des chapitres en appendice dans la toc. Cette commande empêche
+% une généralisation extrême des commandes de configuration des chapitres
+\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{\protect\appendixname~}}
+\chapter{Description de l'échelle des notes d'état corporel des zebus soudaniens} \label{annex:nec-guide}
+
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\setcounter{figure}{0}
+
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\linewidth,]{images/nec_pics/points_anatomiques_nec.jpg}
+	\caption[Points anatomiques utilisés pour la détermination de la note d'état corporel]
+	{Points anatomiques utilisés pour la détermination de la note d'état corporel
+		\label{fig:points_anatomiques}\shortcite{RN31}}
+\end{figure}
+
+\begin{figure}[!ht]
+	
+	{
+		\begin{center}
+		\subfloat[Vue postérieure de l'animal\label{fig:nec_0_arriere}]
+		{\includegraphics[width=0.2\linewidth,]{images/nec_pics/nec_0_derriere.jpg} }
+		\subfloat[Vue latérale\label{fig:nec_0_cote}]
+		{\includegraphics[width=0.5\linewidth,]{images/nec_pics/nec_0_cote.jpg} }
+		\end{center}
+	}
+	\caption[Représentation d'un animal cachectique ayant une note d'état corporel de 0]
+	{Représentation d'un animal cachectique ayant une note d'état corporel de 0 \shortcite{RN31} \label{fig:nec_0}}
+\end{figure}
+
+\begin{figure}[!ht]
+	
+	{
+		\begin{center}
+			\subfloat[NEC de 1\label{fig:nec_1_arriere}]
+			{\includegraphics[width=0.5\linewidth,]{images/nec_pics/nec_1.png} }
+			\subfloat[NEC de 2\label{fig:nec_1_cote}]
+			{\includegraphics[width=0.5\linewidth,]{images/nec_pics/nec_2.png} }
+		\end{center}
+	}
+	\caption[Représentation d'animaux amaigris ayant des notes d'etat corporel anormaux]
+	{Représentation d'animaux amaigris ayant des NECs anormaux \label{fig:nec_1} \shortcite{RN31} }
+\end{figure}
+
+\begin{figure}[!ht]
+	
+	{
+		\begin{center}
+			\subfloat[NEC de 3\label{fig:nec_2_arriere}]
+			{\includegraphics[width=0.5\linewidth,]{images/nec_pics/nec_3.png} }
+			\subfloat[NEC de 4\label{fig:nec_2_cote}]
+			{\includegraphics[width=0.5\linewidth,]{images/nec_pics/nec_4.png} }
+		\end{center}
+	}
+	\caption[Représentation d'animaux ayant une note corporelle normale et dans la moyenne]
+	{Représentation d'animaux ayant une NEC normale \shortcite{RN31} \label{fig:nec_2}}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+	\includegraphics[width=0.6\linewidth,]{images/nec_pics/nec_5.png}
+	\caption[Représentation d'un animal en surpoids ayant une note d'état corporel de 5]
+	{Représentation d'un animal en surpoids ayant une NEC de 5 \shortcite{RN31} \label{fig:nec_3}}
+\end{center}
+\end{figure}
